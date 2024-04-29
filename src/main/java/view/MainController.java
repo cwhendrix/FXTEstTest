@@ -3,6 +3,7 @@ package view;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -26,6 +27,18 @@ public class MainController
 
 	@FXML
 	private Label ResultLabel;
+	
+	@FXML
+	private Button addButton;
+	
+	@FXML
+	private Button subtractButton;
+	
+	@FXML
+	private Button multiplyButton;
+	
+	@FXML
+	private Button divideButton;
 	
 	private CalcModel model;
 	
