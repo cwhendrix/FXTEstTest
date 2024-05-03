@@ -11,6 +11,7 @@ import org.testfx.framework.junit5.Start;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import app.*;
@@ -52,14 +53,39 @@ public class CalculatorTests
 	  robot.write(num);
   }
   private void addNum2(FxRobot robot, String num) {
-	  robot.clickOn("NumTwoTF");
+	  robot.clickOn("#NumTwoTF");
 	  robot.write(num);
   }
   
+  @SuppressWarnings("unchecked")
+  private ListView<Operation> getOperations(FxRobot robot) {
+	return (ListView<Operation>) robot.lookup("#HistoryView").queryAll().iterator().next();
+	  
+  }
+  /*
+  private void checkResult(FxRobot robot, String result) {
+	  Assertions.assertThat(robot.lookup("#HistoryView").queryAs(ListView<Operation>)).hasText(result);
+  }
+  */
   @Test
-  void testAddButton(FxRobot robot) {
+  void testComputationsButton(FxRobot robot) {
 	  addNum1(robot, "6");
 	  addNum2(robot, "2");
 	  robot.clickOn("#addButton");
+	  
+	  addNum1(robot, "6");
+	  addNum2(robot, "2");
+	  robot.clickOn("#subtractButton");
+	  
+	  addNum1(robot, "6");
+	  addNum2(robot, "2");
+	  robot.clickOn("#multiplyButton");
+	  
+	  addNum1(robot, "6");
+	  addNum2(robot, "2");
+	  robot.clickOn("#divideButton");
+	  
+	  ListView<Operation> allOps = getOperations(robot);
+	  System.out.println(allOps);
   }
 }

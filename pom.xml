@@ -45,11 +45,6 @@
 			<version>3.13.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>RESTServerTools</groupId>
-			<artifactId>RESTServerTools</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
