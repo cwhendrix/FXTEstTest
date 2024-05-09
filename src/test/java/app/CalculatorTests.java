@@ -9,6 +9,7 @@ import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
@@ -68,6 +69,12 @@ public class CalculatorTests
   }
   */
   @Test
+  void testIsEmpty(FxRobot robot ) {
+	  ListView<Operation> allOps = getOperations(robot);
+	  Assertions.assertThat(allOps).hasExactlyNumItems(0);
+  }
+  
+  @Test
   void testComputationsButton(FxRobot robot) {
 	  addNum1(robot, "6");
 	  addNum2(robot, "2");
@@ -86,6 +93,18 @@ public class CalculatorTests
 	  robot.clickOn("#divideButton");
 	  
 	  ListView<Operation> allOps = getOperations(robot);
-	  System.out.println(allOps);
+	  ObservableList<Operation> ops = allOps.getItems();
+	  
+	  Operation [] operations = {
+			  new Operation(6, " + ", 2, 8),
+			  new Operation(6, " - ", 2, 4),
+			  new Operation(6, " * ", 2, 12),
+			  new Operation(6, " / ", 2, 3)
+	  };
+	  Assertions.assertThat(allOps).hasExactlyNumItems(operations.length);
+	  
+	  for (int i=0; i<operations.length; i++) {
+		  Assertions.assertThat(ops.get(i).toString()).isEqualTo(operations[i].toString());
+	  }
   }
 }
